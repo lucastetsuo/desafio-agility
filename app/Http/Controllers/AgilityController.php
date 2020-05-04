@@ -20,4 +20,16 @@ class AgilityController extends Controller
         $users = $response['user']['entries'];
         return view('user', ['users' => $users, 'pageName' => 'Desafio Agility - Método POST']);
     }
+
+    public function show(){
+        $responseGet = Http::get('https://eagle-backend-staging.devops.somosagility.com.br/getTeste');
+
+        $responsePost = Http::post('https://eagle-backend-staging.devops.somosagility.com.br/postTeste', [
+            'key' => env('API_KEY')
+        ]);
+        
+        $users = array_merge($responseGet['user'], $responsePost['user']['entries']);
+
+        return view('user', ['users' => $users, 'pageName' => 'Desafio Agility - Método POST']);
+    }
 }

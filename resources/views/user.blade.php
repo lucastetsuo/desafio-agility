@@ -56,6 +56,7 @@
 
       window.onload = () => {
         loadTableData(tableData);
+        sortColumn('customer');
       };
 
       function loadTableData(tableData){
@@ -96,9 +97,13 @@
       }
 
       function sortStringColumn(sort, columnName){
-        filteredData = filteredData.sort((val1,val2) => {
-          return sort ? val1[columnName] > val2[columnName] : val2[columnName] > val1[columnName]
-        });
+        filteredData.sort((val1,val2) => {
+          if(val1[columnName] > val2[columnName]) { return -1; }
+          else if(val1[columnName] < val2[columnName]) { return 1; }
+        })
+        if(sort){
+          filteredData = filteredData.reverse();
+        }
       }
 
       function search(){

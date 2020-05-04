@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 Route::get('/method-get', 'AgilityController@methodGet');
 Route::get('/method-post', 'AgilityController@methodPost');
+Route::get('/users', 'AgilityController@show');
